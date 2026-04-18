@@ -3,14 +3,14 @@
 ## Project Reference
 - **Project**: JRNY Copilot — Chrome MV3 extension overlaying WhatsApp Web with AI-powered group trip planning
 - **Core Value**: Turn chaotic group chats ("we should go somewhere this summer") into an actionable trip shortlist without leaving WhatsApp Web
-- **Current Focus**: Phase 1 — Extension Scaffold & DOM Reader (MV3 plumbing + MutationObserver-driven chat ingestion)
+- **Current Focus**: Phase 2 — AI Integration & Suggestions (z.AI integration + side panel UI)
 - **Stack**: WXT 0.20.25 + React 19 + TypeScript + Tailwind v4 + shadcn/ui; z.AI via OpenAI SDK with `baseURL` override; `@webext-core/messaging` for typed CS ↔ SW ↔ sidePanel; `@wxt-dev/storage` + Zustand for state
 
 ## Current Position
-- **Phase**: 1 — Extension Scaffold & DOM Reader
-- **Plan**: 2 complete (01-PLAN-dom-reader.md)
-- **Status**: Phase 1 complete — all 4 INFRA requirements delivered; ready for Phase 2
-- **Progress**: `[███░░░░░░░] 1/3 phases in progress (Phase 1 complete)`
+- **Phase**: 2 — AI Integration & Suggestions
+- **Plan**: 0/4 executed (4 plans planned and verified)
+- **Status**: Phase 2 planned — 4 plans verified; ready to execute
+- **Progress**: `[███░░░░░░░] 1/3 phases complete (Phase 2 ready to execute)`
 
 ## Performance Metrics
 - Phases complete: 1/3 (Phase 1 done)
@@ -35,7 +35,8 @@
 ### Todos
 - [x] Plan 02: implement WhatsApp DOM reader in `entrypoints/content.ts`
 - [x] Plan 02: wire `sendMessage('chatDelta', ...)` from content script
-- [ ] Phase 2: z.AI integration — wire chatDelta transcript into AI call, surface suggestions to side panel
+- [x] Phase 2: plan z.AI integration (4 plans verified, ready to execute)
+- [ ] Phase 2: execute plans — install openai SDK, wire chatDelta → AI call → side panel UI
 
 ### Blockers
 - None.
@@ -47,8 +48,8 @@
 - Smoke test (manual): `npm run dev` → Chrome → WhatsApp Web → icon click → side panel. Not yet performed.
 
 ## Session Continuity
-- **Last session**: 2026-04-18 — Phase 1 Plan 2 complete (WhatsApp DOM reader + chatDelta sender). Commits: 02e748a, 8c16623, c36ca97.
-- **Next session**: Phase 2 — z.AI integration (wire chatDelta transcript → AI call → suggestions).
+- **Last session**: 2026-04-18 — Phase 2 planning complete. 4 plans verified by plan-checker: env-and-install (Wave 0), types-and-lib (Wave 1), sw-handler (Wave 2), sidepanel-ui (Wave 3).
+- **Next session**: Phase 2 execution — run `/gsd-execute-phase 2`.
 - **Files of record**:
   - `.planning/PROJECT.md`
   - `.planning/REQUIREMENTS.md`

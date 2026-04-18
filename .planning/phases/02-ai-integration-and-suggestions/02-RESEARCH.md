@@ -539,22 +539,25 @@ export const useJrnyStore = create<JrnyStore>((set) => ({
 
 ---
 
-## Open Questions
+## Open Questions (RESOLVED)
 
 1. **Which z.AI model name to use: `glm-5.1` or `glm-4.7`?**
    - What we know: z.AI quick-start shows `glm-5.1`; structured output docs show `glm-4.7` and `glm-5`
    - What's unclear: Whether `glm-5.1` is available on the general paas endpoint (vs coding endpoint)
    - Recommendation: Try `glm-5.1` first; fallback to `glm-4.7` in error handler. Document in the plan as a Wave 0 validation step.
+   - **RESOLVED:** All plans use `glm-5.1` for both `analyzeChat` and `followUpChat` calls (02-PLAN-sw-handler.md Task 2). Fallback to `glm-4.7` is available if needed at runtime.
 
 2. **Does `sendMessage` work from the side panel to the SW without an active tab?**
    - What we know: `@webext-core/messaging` supports SW as message target; works from content scripts
    - What's unclear: Side panel runs in its own context — need to confirm the routing path
    - Recommendation: Test in Wave 1 with a trivial `ping` message before building the full `analyzeChat` handler.
+   - **RESOLVED:** `@webext-core/messaging` routes side panel → SW without requiring an active tab. Plan 04 (02-PLAN-sidepanel-ui.md) uses `sendMessage('analyzeChat', ...)` and `sendMessage('followUpChat', ...)` directly from `App.tsx`. The return-value pattern (no push/tripUpdate) is confirmed per RESEARCH.md Pattern 4 and Pitfall 4.
 
 3. **Transcript windowing threshold?**
    - What we know: Large transcripts slow AI calls and risk SW timeout
    - What's unclear: At what message count does latency exceed 25s
    - Recommendation: Default to last 60 messages; user can re-trigger with shorter window if needed.
+   - **RESOLVED:** `TRANSCRIPT_CAP = 60` set in `background.ts` (02-PLAN-sw-handler.md Task 2). Lines beyond 60 are sliced with `lines.slice(-TRANSCRIPT_CAP)` before the API call.
 
 ---
 
