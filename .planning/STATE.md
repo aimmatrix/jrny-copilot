@@ -8,14 +8,14 @@
 
 ## Current Position
 - **Phase**: 1 — Extension Scaffold & DOM Reader
-- **Plan**: 1 complete (01-PLAN-scaffold.md)
-- **Status**: Plan 1 complete; ready for Plan 2 (DOM reader)
-- **Progress**: `[███░░░░░░░] 1/3 phases in progress`
+- **Plan**: 2 complete (01-PLAN-dom-reader.md)
+- **Status**: Phase 1 complete — all 4 INFRA requirements delivered; ready for Phase 2
+- **Progress**: `[███░░░░░░░] 1/3 phases in progress (Phase 1 complete)`
 
 ## Performance Metrics
-- Phases complete: 0/3
-- Plans complete: 1/? (Phase 1 Plan 1 done)
-- Requirements delivered: INFRA-01 (partial), INFRA-04
+- Phases complete: 1/3 (Phase 1 done)
+- Plans complete: 2/? (Phase 1 Plans 1+2 done)
+- Requirements delivered: INFRA-01, INFRA-02, INFRA-03, INFRA-04
 - Time budget: 24h hackathon
 
 ## Accumulated Context
@@ -33,8 +33,9 @@
 - **No popup entrypoint** — WXT React template popup deleted; `default_popup` in manifest breaks `openPanelOnActionClick` for sidePanel.
 
 ### Todos
-- [ ] Plan 02: implement WhatsApp DOM reader in `entrypoints/content.ts`
-- [ ] Plan 02: wire `sendMessage('chatDelta', ...)` from content script
+- [x] Plan 02: implement WhatsApp DOM reader in `entrypoints/content.ts`
+- [x] Plan 02: wire `sendMessage('chatDelta', ...)` from content script
+- [ ] Phase 2: z.AI integration — wire chatDelta transcript into AI call, surface suggestions to side panel
 
 ### Blockers
 - None.
@@ -46,19 +47,23 @@
 - Smoke test (manual): `npm run dev` → Chrome → WhatsApp Web → icon click → side panel. Not yet performed.
 
 ## Session Continuity
-- **Last session**: 2026-04-18 — Phase 1 Plan 1 complete (WXT scaffold + side panel shell). Commits: 2dbb2e9, bc88cfe, 4a97bcc.
-- **Next session**: Plan 02 — WhatsApp DOM reader (content script MutationObserver + chatDelta sender).
+- **Last session**: 2026-04-18 — Phase 1 Plan 2 complete (WhatsApp DOM reader + chatDelta sender). Commits: 02e748a, 8c16623, c36ca97.
+- **Next session**: Phase 2 — z.AI integration (wire chatDelta transcript → AI call → suggestions).
 - **Files of record**:
   - `.planning/PROJECT.md`
   - `.planning/REQUIREMENTS.md`
   - `.planning/ROADMAP.md`
   - `.planning/phases/01-extension-scaffold-and-dom-reader/01-PLAN-scaffold-SUMMARY.md`
+  - `.planning/phases/01-extension-scaffold-and-dom-reader/01-PLAN-dom-reader-SUMMARY.md`
   - `entrypoints/background.ts`
   - `entrypoints/content.ts`
   - `entrypoints/sidepanel/`
   - `messaging/protocol.ts`
   - `types/message.ts`
+  - `whatsapp/selectors.ts`
+  - `whatsapp/extractor.ts`
+  - `whatsapp/observer.ts`
   - `wxt.config.ts`
 
 ---
-*Last updated: 2026-04-18 — Plan 01-01 complete*
+*Last updated: 2026-04-18 — Plan 01-02 complete (Phase 1 done)*
