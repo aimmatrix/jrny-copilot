@@ -1,0 +1,5 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* shadcn base layer — keep whatever shadcn init injected at project root;
+   for Phase 1 this file is the only stylesheet the side panel loads. */
