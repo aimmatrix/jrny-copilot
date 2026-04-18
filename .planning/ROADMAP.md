@@ -10,7 +10,7 @@
 
 ## Phases
 
-- [ ] **Phase 1: Extension Scaffold & DOM Reader** - MV3 extension installs, side panel opens on WhatsApp Web, content script reads messages and forwards them to the service worker
+- [~] **Phase 1: Extension Scaffold & DOM Reader** - MV3 extension installs, side panel opens on WhatsApp Web, content script reads messages and forwards them to the service worker (Plan 1 complete — scaffold + side panel shell done)
 - [ ] **Phase 2: AI Integration & Suggestions** - Service worker calls z.AI with structured prompts, produces trip intent + summary + consensus view, and surfaces flight/stay/activity link cards
 - [ ] **Phase 3: Side Panel UI Polish & Multi-turn Chat** - Branded side panel renders trip summary, suggestion cards, multi-turn follow-up chat, and a manual re-analyze control for the live demo
 
@@ -27,7 +27,7 @@
   2. User clicks the extension action and a Chrome side panel opens docked to the WhatsApp Web tab.
   3. Content script reads visible messages from the active group thread via tiered ARIA / `data-*` selectors with a MutationObserver debounce and dedupes by message id.
   4. Service worker receives structured `{sender, timestamp, text, urls[]}` payloads from the content script over a typed `@webext-core/messaging` channel and logs them.
-**Plans**: TBD
+**Plans**: Plan 1 (01-PLAN-scaffold.md) — DONE. Plan 2 (DOM reader) — TBD.
 **UI hint**: yes
 
 ### Phase 2: AI Integration & Suggestions
@@ -60,7 +60,7 @@
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Extension Scaffold & DOM Reader | 0/0 | Not started | - |
+| 1. Extension Scaffold & DOM Reader | 1/2 | In progress | - |
 | 2. AI Integration & Suggestions | 0/0 | Not started | - |
 | 3. Side Panel UI Polish & Multi-turn Chat | 0/0 | Not started | - |
 
