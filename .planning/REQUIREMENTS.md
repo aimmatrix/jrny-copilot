@@ -55,9 +55,27 @@
 
 ## Traceability
 
-| Requirement | Phase |
-|-------------|-------|
-| INFRA-01 to INFRA-04 | Phase 1: Extension Scaffold |
-| INFRA-05, AI-01 to AI-05 | Phase 2: AI Integration |
-| SUGG-01 to SUGG-04 | Phase 2: AI Integration |
-| UI-01 to UI-06 | Phase 3: Side Panel UI |
+| Requirement | Phase | Status |
+|-------------|-------|--------|
+| INFRA-01 | Phase 1: Extension Scaffold & DOM Reader | Pending |
+| INFRA-02 | Phase 1: Extension Scaffold & DOM Reader | Pending |
+| INFRA-03 | Phase 1: Extension Scaffold & DOM Reader | Pending |
+| INFRA-04 | Phase 1: Extension Scaffold & DOM Reader | Pending |
+| INFRA-05 | Phase 2: AI Integration & Suggestions | Pending |
+| AI-01 | Phase 2: AI Integration & Suggestions | Pending |
+| AI-02 | Phase 2: AI Integration & Suggestions | Pending |
+| AI-03 | Phase 2: AI Integration & Suggestions | Pending |
+| AI-04 | Phase 2: AI Integration & Suggestions | Pending |
+| AI-05 | Phase 2: AI Integration & Suggestions | Pending |
+| SUGG-01 | Phase 2: AI Integration & Suggestions | Pending |
+| SUGG-02 | Phase 2: AI Integration & Suggestions | Pending |
+| SUGG-03 | Phase 2: AI Integration & Suggestions | Pending |
+| SUGG-04 | Phase 2: AI Integration & Suggestions | Pending |
+| UI-01 | Phase 3: Side Panel UI Polish & Multi-turn Chat | Pending |
+| UI-02 | Phase 3: Side Panel UI Polish & Multi-turn Chat | Pending |
+| UI-03 | Phase 3: Side Panel UI Polish & Multi-turn Chat | Pending |
+| UI-04 | Phase 3: Side Panel UI Polish & Multi-turn Chat | Pending |
+| UI-05 | Phase 3: Side Panel UI Polish & Multi-turn Chat | Pending |
+| UI-06 | Phase 3: Side Panel UI Polish & Multi-turn Chat | Pending |
+
+**Coverage:** 20/20 v1 requirements mapped. No orphans, no duplicates.
