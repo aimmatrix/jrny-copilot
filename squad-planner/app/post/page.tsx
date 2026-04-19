@@ -59,7 +59,7 @@ export default function PostPage() {
     <div>
       <h1 className="text-2xl font-bold mb-2">Share a Link</h1>
       <p className="text-sm text-gray-500 mb-6">
-        Paste any TikTok, Instagram, or Twitter link. AI will summarise it for the squad.
+        Paste any TikTok, Instagram, or Twitter link. AI will summarise it for the group.
       </p>
 
       <form onSubmit={handleSubmit} className="space-y-4">
@@ -87,7 +87,7 @@ export default function PostPage() {
           disabled={loading || !url.trim()}
           className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-2xl font-semibold text-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          {loading ? '✨ Analysing with AI...' : 'Share with Squad'}
+          {loading ? '✨ Analysing with AI...' : 'Add to GoTogether'}
         </button>
       </form>
 

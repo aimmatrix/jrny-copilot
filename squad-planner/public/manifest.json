@@ -1,7 +1,7 @@
 {
-  "name": "Squad Planner",
-  "short_name": "Squad",
-  "description": "Plan group activities with your squad",
+  "name": "GoTogether",
+  "short_name": "GoTogether",
+  "description": "Plan group activities and outings with your crew",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#f9fafb",

@@ -6,13 +6,13 @@ import { Nav } from '@/components/Nav'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Squad Planner',
-  description: 'Plan group activities with your squad',
+  title: 'GoTogether',
+  description: 'Plan group activities and outings with your crew',
   manifest: '/manifest.json',
   appleWebApp: {
     capable: true,
     statusBarStyle: 'default',
-    title: 'Squad Planner',
+    title: 'GoTogether',
   },
   formatDetection: {
     telephone: false,

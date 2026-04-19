@@ -26,7 +26,7 @@ export function AddMemberSheet({ onAdd, onClose }: AddMemberSheetProps) {
         onClick={e => e.stopPropagation()}
       >
         <div className="w-10 h-1 bg-gray-200 rounded-full mx-auto mb-4" />
-        <h2 className="text-lg font-bold mb-4">Add Squad Member</h2>
+        <h2 className="text-lg font-bold mb-4">Add Member</h2>
         <input
           type="text"
           value={name}
