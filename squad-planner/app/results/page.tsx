@@ -1,4 +1,5 @@
 'use client'
+import { useMemo } from 'react'
 import { useRouter } from 'next/navigation'
 import { useActivityStore } from '@/lib/stores/activity.store'
 import { useSessionStore } from '@/lib/stores/session.store'
@@ -11,6 +12,12 @@ export default function ResultsPage() {
   const { getSorted, activities } = useActivityStore()
   const { members } = useSessionStore()
   const sorted = getSorted()
+  const topCount = sorted.length > 0 ? approvalCount(sorted[0]) : 0
+  const tied = topCount > 0 ? sorted.filter(a => approvalCount(a) === topCount) : []
+  const priorityId = useMemo(() => {
+    if (tied.length === 0) return ''
+    return tied[Math.floor(Math.random() * tied.length)].id
+  }, [tied.length, topCount])
 
   if (activities.length === 0) {
     return (
@@ -43,7 +50,7 @@ export default function ResultsPage() {
                 </span>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 flex-wrap mb-1">
-                    {i === 0 && count > 0 && <PriorityBadge />}
+                    {activity.id === priorityId && <PriorityBadge />}
                     <span className="text-sm font-semibold text-gray-800 leading-tight">
                       {activity.title}
                     </span>
