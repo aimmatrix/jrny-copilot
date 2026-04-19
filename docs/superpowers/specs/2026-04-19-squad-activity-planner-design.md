@@ -134,6 +134,7 @@ Return JSON only. No markdown, no explanation.
 ### 3. Results & Priority
 ```
 /results → activities sorted by approvalCount descending
+  where approvalCount = Object.values(votes).filter(v => v === 'approve').length  (computed, not stored)
 → #1 gets PriorityBadge ("Top Pick")
 → each activity shows VoteBar (approve %, disapprove %) + voter names
 → "Schedule" button → navigates to /calendar with activityId pre-selected
@@ -145,6 +146,7 @@ Return JSON only. No markdown, no explanation.
 → click date → DateModal opens:
     Option A: "Assign activity" → pick from approved list → saved as ScheduledDate
     Option B: "Wildcard" → randomly picks from approved activities
+              → if no approved activities exist: show toast "Vote on some activities first", close modal
               → wildcardActivityId stored, activityId left null
               → calendar shows "🃏 Surprise" on that date
 → on date === today: wildcardActivityId promoted to activityId, revealed in UI
@@ -255,5 +257,5 @@ When ready to go real multi-user:
 
 ```
 Z_AI_KEY=...              # z.AI API key — server-side only, never in client bundle
-NEXT_PUBLIC_GMAPS_KEY=... # Google Maps Embed API key — public is fine for embed iframe
+NEXT_PUBLIC_GMAPS_KEY=... # Google Maps Embed API key — optional; MapEmbed skips render if unset
 ```
