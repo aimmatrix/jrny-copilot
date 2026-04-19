@@ -16,11 +16,11 @@ export const useCalendarStore = create<CalendarStore>()(
     (set, get) => ({
       dates: [],
       addDate: (date) =>
-        set(state =>
-          state.dates.some(d => d.date === date.date)
-            ? state
-            : { dates: [...state.dates, date] }
-        ),
+        set(state => ({
+          dates: state.dates.some(d => d.date === date.date)
+            ? state.dates.map(d => d.date === date.date ? date : d)
+            : [...state.dates, date],
+        })),
       removeDate: (id) =>
         set(state => ({ dates: state.dates.filter(d => d.id !== id) })),
       getDate: (dateStr) =>

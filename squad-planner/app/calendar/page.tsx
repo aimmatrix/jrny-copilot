@@ -1,6 +1,6 @@
 'use client'
 import { useState, Suspense } from 'react'
-import { useSearchParams } from 'next/navigation'
+import { useSearchParams, useRouter } from 'next/navigation'
 import { useActivityStore } from '@/lib/stores/activity.store'
 import { useCalendarStore } from '@/lib/stores/calendar.store'
 import { CalendarView } from '@/components/CalendarView'
@@ -10,14 +10,16 @@ import { shouldReveal } from '@/lib/wildcard'
 
 function CalendarContent() {
   const searchParams = useSearchParams()
+  const router = useRouter()
   const [selectedDate, setSelectedDate] = useState<string | null>(null)
 
   const { getSorted, activities } = useActivityStore()
-  const { addDate, getResolved } = useCalendarStore()
+  const { addDate, getResolved, dates } = useCalendarStore()
   const resolved = getResolved()
 
   const preSelectedId = searchParams.get('activityId') ?? ''
   const allActivities = getSorted()
+  const hasActivities = allActivities.length > 0
   const approvedActivities = getSorted().filter(a => approvalCount(a) > 0)
 
   function handleSelectDate(date: Date) {
@@ -55,6 +57,18 @@ function CalendarContent() {
   return (
     <div>
       <h1 className="text-2xl font-bold mb-6">Calendar</h1>
+      {!hasActivities && (
+        <div className="mb-4 p-4 bg-amber-50 rounded-2xl border border-amber-200">
+          <p className="text-sm text-amber-800 font-medium mb-2">No activities to schedule yet</p>
+          <p className="text-xs text-amber-600 mb-3">Go to the feed and load demo data or share a link first.</p>
+          <button
+            onClick={() => router.push('/')}
+            className="text-xs bg-amber-500 text-white px-4 py-2 rounded-full font-semibold"
+          >
+            Go to Feed →
+          </button>
+        </div>
+      )}
       <CalendarView scheduledDates={resolved} onSelectDate={handleSelectDate} />
 
       {resolved.length > 0 && (
