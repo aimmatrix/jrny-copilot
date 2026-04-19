@@ -13,6 +13,7 @@ interface SessionStore {
   members: Member[]
   currentUserId: string
   setCurrentUser: (id: string) => void
+  addMember: (name: string) => void
 }
 
 export const useSessionStore = create<SessionStore>()(
@@ -21,8 +22,16 @@ export const useSessionStore = create<SessionStore>()(
       members: DEMO_MEMBERS,
       currentUserId: 'u1',
       setCurrentUser: (id) => set({ currentUserId: id }),
+      addMember: (name) => set(state => {
+        const id = `u${Date.now()}`
+        const newMember: Member = { id, name: name.trim() }
+        return { members: [...state.members, newMember] }
+      }),
     }),
-    { name: 'squad-session' }
+    {
+      name: 'squad-session',
+      partialize: (s) => ({ currentUserId: s.currentUserId, members: s.members }),
+    }
   )
 )
 

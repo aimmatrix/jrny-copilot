@@ -1,14 +1,16 @@
 'use client'
-import { useCallback } from 'react'
+import { useCallback, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useActivityStore } from '@/lib/stores/activity.store'
 import { useSessionStore, selectCurrentUser } from '@/lib/stores/session.store'
 import { CardStack } from '@/components/CardStack'
+import { AddMemberSheet } from '@/components/AddMemberSheet'
 
 export default function FeedPage() {
   const router = useRouter()
 
-  const { members, currentUserId, setCurrentUser } = useSessionStore()
+  const { members, currentUserId, setCurrentUser, addMember } = useSessionStore()
+  const [showAddMember, setShowAddMember] = useState(false)
   const currentUser = useSessionStore(selectCurrentUser)
   const { getUnvoted, vote, activities, addActivity } = useActivityStore()
 
@@ -87,6 +89,13 @@ export default function FeedPage() {
               {m.name[0]}
             </button>
           ))}
+          <button
+            onClick={() => setShowAddMember(true)}
+            title="Add member"
+            className="w-9 h-9 rounded-full text-sm font-bold border-2 border-dashed border-gray-300 text-gray-400 hover:border-indigo-400 hover:text-indigo-500 transition-all"
+          >
+            +
+          </button>
         </div>
       </div>
 
@@ -139,6 +148,13 @@ export default function FeedPage() {
             onEmpty={handleEmpty}
           />
         </>
+      )}
+
+      {showAddMember && (
+        <AddMemberSheet
+          onAdd={addMember}
+          onClose={() => setShowAddMember(false)}
+        />
       )}
     </div>
   )
