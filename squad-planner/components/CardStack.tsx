@@ -21,7 +21,7 @@ export function CardStack({ activities, onVote, onEmpty }: CardStackProps) {
   const behind = activities[1]
 
   return (
-    <div className="relative w-full h-[480px]">
+    <div className="relative w-full h-[480px]" style={{ touchAction: 'none' }}>
       {/* Card behind for visual depth */}
       {behind && (
         <div className="absolute inset-0 rounded-3xl bg-white shadow-lg scale-95 translate-y-4 pointer-events-none" />

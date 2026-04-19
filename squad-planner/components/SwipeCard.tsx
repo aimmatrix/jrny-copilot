@@ -22,7 +22,7 @@ export function SwipeCard({ onVote, children }: SwipeCardProps) {
 
   return (
     <motion.div
-      style={{ x, rotate }}
+      style={{ x, rotate, touchAction: 'none' }}
       drag="x"
       dragConstraints={{ left: 0, right: 0 }}
       dragElastic={0.9}
