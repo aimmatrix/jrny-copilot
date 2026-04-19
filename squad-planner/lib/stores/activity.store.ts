@@ -32,6 +32,6 @@ export const useActivityStore = create<ActivityStore>()(
         [...get().activities].sort((a, b) => approvalCount(b) - approvalCount(a)),
       clearAll: () => set({ activities: [] }),
     }),
-    { name: 'squad-activities' }
+    { name: 'squad-activities', partialize: (s) => ({ activities: s.activities }) }
   )
 )

@@ -16,7 +16,11 @@ export const useCalendarStore = create<CalendarStore>()(
     (set, get) => ({
       dates: [],
       addDate: (date) =>
-        set(state => ({ dates: [...state.dates, date] })),
+        set(state =>
+          state.dates.some(d => d.date === date.date)
+            ? state
+            : { dates: [...state.dates, date] }
+        ),
       removeDate: (id) =>
         set(state => ({ dates: state.dates.filter(d => d.id !== id) })),
       getDate: (dateStr) =>
@@ -24,6 +28,6 @@ export const useCalendarStore = create<CalendarStore>()(
       getResolved: () =>
         resolveWildcards(get().dates),
     }),
-    { name: 'squad-calendar' }
+    { name: 'squad-calendar', partialize: (s) => ({ dates: s.dates }) }
   )
 )
