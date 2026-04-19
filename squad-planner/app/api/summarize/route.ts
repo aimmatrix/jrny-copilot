@@ -21,7 +21,7 @@ async function fetchOgTags(url: string): Promise<{ title: string; description: s
   try {
     const res = await fetch(url, {
       headers: {
-        'User-Agent': 'Mozilla/5.0 (compatible; SquadPlannerBot/1.0)',
+        'User-Agent': 'Mozilla/5.0 (compatible; GoTogetherBot/1.0)',
         'Accept': 'text/html',
       },
       signal: AbortSignal.timeout(5000),
@@ -63,6 +63,23 @@ Extract and return ONLY a JSON object with these exact keys:
 - platform: detected from URL domain (twitter|instagram|tiktok|youtube|other)
 
 Return JSON only. No markdown, no explanation, no extra keys.`
+}
+
+function buildFromOg(
+  url: string,
+  og: { title: string; description: string }
+): Record<string, unknown> | null {
+  if (!og.title && !og.description) return null
+  const words = (og.title || og.description).replace(/\s+/g, ' ').trim().split(' ')
+  const title = words.slice(0, 8).join(' ')
+  const summary = og.description ? og.description.slice(0, 300) : og.title
+  return {
+    title,
+    summary,
+    location: null,
+    category: 'other',
+    platform: detectPlatform(url),
+  }
 }
 
 function parseJson(content: string) {
@@ -107,7 +124,7 @@ export async function POST(req: NextRequest) {
       try {
         data = await summariseWithGemini(prompt)
       } catch {
-        return NextResponse.json(FALLBACK)
+        data = buildFromOg(url, og)
       }
     }
 
