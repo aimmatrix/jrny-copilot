@@ -4,7 +4,9 @@ import type { Activity } from '@/lib/types'
 
 interface DateModalProps {
   date: string
+  activities: Activity[]
   approvedActivities: Activity[]
+  preSelectedId?: string
   onAssign: (activityId: string) => void
   onWildcard: () => void
   onClose: () => void
@@ -12,12 +14,14 @@ interface DateModalProps {
 
 export function DateModal({
   date,
+  activities,
   approvedActivities,
+  preSelectedId = '',
   onAssign,
   onWildcard,
   onClose,
 }: DateModalProps) {
-  const [selected, setSelected] = useState('')
+  const [selected, setSelected] = useState(preSelectedId)
 
   return (
     <div
@@ -32,9 +36,9 @@ export function DateModal({
         <h2 className="text-lg font-bold mb-1">Schedule for {date}</h2>
         <p className="text-sm text-gray-400 mb-5">Pick an activity or go wildcard 🃏</p>
 
-        {approvedActivities.length > 0 ? (
+        {activities.length > 0 ? (
           <div className="space-y-2 mb-5">
-            {approvedActivities.map(a => (
+            {activities.map(a => (
               <button
                 key={a.id}
                 onClick={() => setSelected(a.id)}
@@ -49,9 +53,9 @@ export function DateModal({
             ))}
           </div>
         ) : (
-          <div className="mb-5 p-4 bg-amber-50 rounded-2xl">
-            <p className="text-sm text-amber-700">
-              No approved activities yet. Vote on some from the feed first!
+          <div className="mb-5 p-4 bg-gray-50 rounded-2xl">
+            <p className="text-sm text-gray-500">
+              No activities yet. Share some links from the Post tab first!
             </p>
           </div>
         )}
@@ -67,11 +71,18 @@ export function DateModal({
           <button
             onClick={onWildcard}
             disabled={approvedActivities.length === 0}
+            title={approvedActivities.length === 0 ? 'Vote on activities first' : ''}
             className="flex-1 bg-amber-500 hover:bg-amber-600 text-white py-3 rounded-2xl text-sm font-semibold transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
           >
             🃏 Wildcard
           </button>
         </div>
+
+        {approvedActivities.length === 0 && (
+          <p className="text-xs text-amber-600 text-center mt-3">
+            Wildcard requires at least one approved activity
+          </p>
+        )}
       </div>
     </div>
   )

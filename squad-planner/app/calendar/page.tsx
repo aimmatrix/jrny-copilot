@@ -16,6 +16,8 @@ function CalendarContent() {
   const { addDate, getResolved } = useCalendarStore()
   const resolved = getResolved()
 
+  const preSelectedId = searchParams.get('activityId') ?? ''
+  const allActivities = getSorted()
   const approvedActivities = getSorted().filter(a => approvalCount(a) > 0)
 
   function handleSelectDate(date: Date) {
@@ -85,7 +87,9 @@ function CalendarContent() {
       {selectedDate && (
         <DateModal
           date={selectedDate}
+          activities={allActivities}
           approvedActivities={approvedActivities}
+          preSelectedId={preSelectedId}
           onAssign={handleAssign}
           onWildcard={handleWildcard}
           onClose={() => setSelectedDate(null)}
