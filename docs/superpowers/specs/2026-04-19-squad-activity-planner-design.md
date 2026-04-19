@@ -19,7 +19,7 @@ A group activity planning web app where friends share social media links (Twitte
 | State | Zustand | Local for demo; swap store actions for API calls to go multi-user |
 | Gestures | Framer Motion | Reliable drag-to-swipe on web, no native dependency |
 | AI | z.AI via OpenAI SDK | Existing API key; OpenAI-compatible with baseURL override |
-| Maps | Google Maps Embed API | Static iframe, no SDK — `maps.google.com/maps?q=...&output=embed` |
+| Maps | Deferred to v2 | Removed from v1 scope |
 | UI | Tailwind + shadcn/ui | Handled by separate UI skill |
 | Deploy | Vercel | One command, works for browser (C) and phone mirror (B) demo |
 
@@ -152,15 +152,6 @@ Return JSON only. No markdown, no explanation.
 → on date === today: wildcardActivityId promoted to activityId, revealed in UI
 ```
 
-### 5. Google Maps
-```
-Activity detail (modal or expanded card)
-→ if activity.location exists:
-    render <MapEmbed location={activity.location} />
-    → <iframe src="https://maps.google.com/maps?q={encoded}&output=embed" />
-→ if no location: map section hidden entirely
-```
-
 ---
 
 ## Component Structure
@@ -189,7 +180,6 @@ components/
 ├── VoteBar.tsx                 # approve/disapprove % bar with voter names
 ├── CalendarView.tsx            # month grid wrapper around shadcn Calendar
 ├── DateModal.tsx               # assign activity or set wildcard
-├── MapEmbed.tsx                # Google Maps iframe (no render if no location)
 └── PriorityBadge.tsx           # "Top Pick" badge for #1 activity
 ```
 
@@ -237,7 +227,7 @@ const DEMO_MEMBERS: Member[] = [
 - OG image scraping (imageUrl field reserved for v2)
 - Push notifications
 - In-app link preview iframe
-- Interactive Google Maps routing (static embed only)
+- Google Maps / location display (deferred to v2)
 - Real-time multi-user sync (Zustand → Supabase migration deferred)
 
 ---
@@ -257,5 +247,4 @@ When ready to go real multi-user:
 
 ```
 Z_AI_KEY=...              # z.AI API key — server-side only, never in client bundle
-NEXT_PUBLIC_GMAPS_KEY=... # Google Maps Embed API key — optional; MapEmbed skips render if unset
 ```
