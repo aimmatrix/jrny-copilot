@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { zai } from '@/lib/ai'
+import { getZai } from '@/lib/ai'
 
 const SYSTEM_PROMPT = `You are analysing a social media post link. Extract:
 - title: short catchy title describing the activity or place (max 8 words)
@@ -24,7 +24,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json(FALLBACK)
     }
 
-    const completion = await zai.chat.completions.create({
+    const completion = await getZai().chat.completions.create({
       model: 'gpt-4o-mini',
       messages: [
         { role: 'system', content: SYSTEM_PROMPT },
